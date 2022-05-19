@@ -1,1 +1,137 @@
+//IT21393570 - M.A.S.S. Mavilmada
+//Individual contribution - Staff
+
+//Staff.h
+
+
+#pragma once
+#include"Booking.h"
+#include"TravellingPackage.h"
+#include"Hotel.h"
+#include"Payment.h"
+
+#define SIZE1 2
+#define SIZE2 2
+#define SIZE3 2
+#define SIZE4 2
+
+class Staff
+{
+
+private:
+	int staffID;
+	char staffName[20];
+	char staffEmail[20];
+	int staffCNum;
+	char staffUserName[20];
+	char staffPassword[20];
+
+	Booking *booking[SIZE1];
+	Payment *payment[SIZE2];
+	TravellingPackage *tPackages[SIZE3];
+	Hotel *hotels[SIZE4];
+
+public:
+	Staff();
+	Staff(int pstaffID, const char pstaffName[], const char pstaffEmail[], int pstaffCNum, const char pstaffUserName[], const char pstaffPassword[], Booking *pbooking, TravellingPackages *ptPackages, Hotels *photels, Payment *ppayment);
+	void login(const char stfUserName, const char stfPassword);
+	void manage();
+	~Staff();
+
+};
+
+
+
+
+
+//Staff.cpp
+
+
+#include"Staff.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Staff::Staff()
+{
+
+	staffID = 0;
+	strcpy(staffName, "");
+	strcpy(staffEmail, "");
+	staffCNum = 0;
+	strcpy(staffUserName, "");
+	strcpy(staffPassword, "");
+
+  noOfBookings =0;
+  noOfPayements = 0;
+  noOfPackages =0;
+  noOfHotels =0;
+
+}
+
+Staff::Staff(int pstaffID, const char pstaffName[], const char pstaffEmail[], int pstaffCNum, const char pstaffUserName[], const char pstaffPassword[], Booking *pbooking, TravellingPackages *ptPackages, Hotels *photels, Payment *ppayment)
+{
+  /* if selection execution */
+  if (noOfBookings < SIZE1)
+  {
+
+    booking[noOfBookings] = pbooking;
+
+    noOfBookings++;
+
+  }// End if selection execution
+
+  /* if selection execution */
+  if (noOfPayements < SIZE2)
+  {
+
+    payment[noOfPayements] = ppayment;
+
+    noOfPayements++;
+
+  }// End if selection execution
+
+  /* if selection execution */
+  if (noOfPackages < SIZE3)
+  {
+
+    tPackages[noOfPackages] = ptPackages;
+
+    noOfPackages++;
+
+  }// End if selection execution
+
+  /* if selection execution */
+  if (noOfHotels < SIZE4)
+  {
+
+    hotels[noOfHotels] = photels;
+
+    noOfHotels++;
+
+  }// End if selection execution
+  
+}
+
+void Staff::login(const char stfUserName, const char stfPassword)
+{
+
+}
+
+void Staff::manage()
+{
+  
+}
+
+Staff::~Staff()
+{
+
+  cout << "Destructor Called" << endl;
+
+}
+
+
+
+
 
