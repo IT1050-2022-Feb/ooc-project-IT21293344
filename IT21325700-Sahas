@@ -1,1 +1,196 @@
+//IT21325700 -H.M.S.I.D.Bandara
+//individual contribution - Payment , report
+
+//payment.h
+
+#pragma once
+#include"Staff.h"
+
+#define SIZE5 2
+
+class Payment
+{
+
+private:
+	int payID;
+	char payType[20];
+	double totalAmount;
+  char refNo[10];
+
+  Staff *staff[SIZE5];
+
+public:
+	Payment();
+	Payment(int pID, const char ppayType[], double ptotalAmount, const char prefNo[], Staff *pstaff);
+	void checkPayment();
+	void confirmPayment();
+	void displayPaymentDetails();
+	~Payment();
+
+};
+
+//Report.h
+
+#pragma once
+#include"Booking.h" 
+#include"Payment.h" 
+#define SIZE1 2 
+#define SIZE2 2 
+
+class Report
+{
+
+private:
+	Booking *book[SIZE1];
+	Payment *pay[SIZE2];
+
+public:
+	Report();
+	Report(Booking *pbook[], Payment *ppay[]);
+	void bookingDetailsReport();
+	void paymentDetailsReport();
+	~Report();
+
+};
+
+
+//Payment.cpp
+
+#include"Payment.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Payment::Payment()
+{
+  
+	payID = 0;
+	strcpy(payType, "");
+	totalAmount = 0;
+  strcpy(refNo, "");
+
+  noOfStaff = 0;
+  
+}
+
+Payment::Payment(int pID, const char ppayType[], double ptotalAmount, const char prefNo[], Staff *pstaff)
+{
+  
+	payID = pID;
+	strcpy(payType, ppayType);
+	totalAmount = ptotalAmount;
+  strcpy(refNo, prefNo);
+  
+/* if selection execution */
+  if (noOfStaff < SIZE5)
+ {
+
+    staff[noOfStaff] = pstaff;
+
+    noOfStaff++;
+
+  }// End if selection execution
+  
+}
+
+void Payment::checkPayment()
+{
+
+}
+
+void Payment::confirmPayment()
+{
+
+}
+
+void Payment::displayPaymentDetails()
+{
+
+}
+
+Payment::~Payment()
+{
+
+	cout << "Destructor Called" << endl;
+
+}
+
+
+//Report.cpp
+
+#include"Report.h"
+#include<iostream>
+
+Report::Report()
+{
+  /* for loop execution */
+	for (int i = 0; i < SIZE1; i++)
+	{
+    
+		book[i] = 0;
+    
+	}// End for loop execution
+  
+  /* for loop execution */
+	for (int j = 0; j < SIZE2; j++)
+	{
+    
+		pay[j] = 0;
+    
+	}// End for loop execution
+	
+}
+
+Report::Report(Booking *pbook[], Payment *ppay[])
+{
+  /* for loop execution */
+	for (int i = 0; i < SIZE1; i++)
+	{
+    
+		book[i] = pbook[i];
+    
+	}// End for loop execution
+
+  /* for loop execution */
+	for (int j = 0; j < SIZE2; j++)
+	{
+    
+		pay[j] = ppay[j];
+    
+	}// End for loop execution
+
+}
+
+void Report::bookingDetailsReport()
+{
+
+
+}
+
+void Report::paymentDetailsReport()
+{
+
+
+}
+
+Report::~Report()
+{
+  /* for loop execution */
+	for (int i = 0; i < SIZE1; i++)
+	{
+    
+		delete book[i];
+    
+	}// End for loop execution
+  
+  /* for loop execution */
+	for (int j = 0; j < SIZE2; j++)
+	{
+    
+		delete pay[j];
+    
+	}// End for loop execution
+
+}
 
