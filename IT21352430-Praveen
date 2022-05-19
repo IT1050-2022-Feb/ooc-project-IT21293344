@@ -1,1 +1,168 @@
+//IT21352430-Dissanayake B V D P D
+//Individual contribution -Customer,RegisteredCustomer
+
+//Customer.h
+
+#pragma once
+#include"Hotel.h"
+#include"TravellingPackage.h"
+
+class Customer
+{
+
+protected:
+	int custID;
+	char custName[20];
+	char custAdderess[30];
+	char custEmail[30];
+	int custCNo;
+
+public:
+	Customer();
+	Customer(int pid, const char pcustName[], const char pcustAdderess[], const char pcustEmail[], int pcustCNo);
+  void SearchTravellingPackages (TravellingPackage *cPack);
+  void SearchHotels (Hotel *cHotel);
+	void registerUser();
+	virtual void displayDetails();
+	~Customer();
+
+};
+
+//RegisteredCustomer.h
+
+#pragma once
+#include"Customer.h"
+class RegisteredCustomer :public Customer
+{
+
+protected:
+	char custUsername[10];
+	char custPassword[15];
+
+public:
+	RegisteredCustomer();
+	RegisteredCustomer(int pid, const char pcustName[], const char pcustAdderess[], const char pcustEmail[], const char pcustCNo[], const char pcustUsername[], const char pcustPassword[]);
+	void displayDetails();
+	void login();
+	void logout();
+	char checkLoginDetails();
+	~RegisteredCustomer();
+
+};
+
+
+//Customer.cpp
+
+#include"Customer.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Customer::Customer()
+{
+  
+	custID = 0;
+	strcpy(custName, "");
+	strcpy(custAdderess, "");
+	strcpy(custEmail, "");
+	custCNo = 0;
+  
+}
+
+Customer::Customer(int pid, const char pcustName[], const char pcustAdderess[], const char pcustEmail[], int pcustCNo)
+{
+  
+	custID = pid;
+	strcpy(custName, pcustName);
+	strcpy(custAdderess, pcustAdderess);
+	strcpy(custEmail, pcustEmail);
+	custCNo = pcustCNo; 
+  
+}
+
+void Customer::SearchTravellingPackages (TravellingPackage *cPack)
+{
+
+  
+}
+
+void Customer::SearchHotels (Hotel *cHotel)
+{
+
+  
+}
+
+void Customer::registerUser()
+{
+
+  
+}
+
+void Customer::displayDetails()
+{
+
+}
+
+Customer::~Customer()
+{
+  
+	cout << "Destructor Called" << endl;
+  
+}
+
+
+//RegisteredCustomer.cpp
+
+
+#include"RegisteredCustomer.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+RegisteredCustomer::RegisteredCustomer()
+{
+  
+	strcpy(custUsername, "");
+	strcpy(custPassword, "");
+  
+}
+
+RegisteredCustomer::RegisteredCustomer(int pid, const char pcustName[], const char pcustAdderess[], const char pcustEmail[], const char pcustCNo[], const char pcustUsername[], const char pcustPassword[])
+{
+  
+	strcpy(custUsername, pcustUsername);
+	strcpy(custPassword, pcustPassword);
+  
+}
+
+void RegisteredCustomer::displayDetails()
+{
+
+}
+
+void RegisteredCustomer::login()
+{
+
+}
+
+void RegisteredCustomer::logout()
+{
+
+}
+
+char RegisteredCustomer::checkLoginDetails()
+{
+
+}
+
+RegisteredCustomer::~RegisteredCustomer()
+{
+
+	cout << "Destructor Called" << endl;
+
+}
+
+
 
