@@ -1,1 +1,215 @@
+//IT21360664-Ekanayake K G V M
+//Individual contribution-Hotel,Booking
 
+//Hotel.h
+#pragma once
+#include"Staff.h" 
+
+#define SIZE5 2
+
+class Hotel
+{
+
+private:
+	int hotelID;
+	char hotelName[20];
+	char hotelDetails[50];
+
+	Staff *staff[SIZE5];
+
+public:
+	Hotel();
+	Hotel(int photelID, const char photelName[], const char photelDetails[], Staff *pstaff);
+	void addHotelDetails();
+	void deleteHotelDetails();
+	void updateHotelDetails();
+	void displayHotelDetails();
+	~Hotel();
+
+};
+//Booking.h
+#pragma once
+#include"Payment.h"
+#include"Staff.h"
+#include"RegisteredCustomer.h"
+#include"Hotel.h"
+#include"TravellingPackage.h"
+
+#define SIZE2 2
+#define SIZE5 2
+
+class Booking
+{
+
+private:
+	int BookID;
+	char BookDate[15];
+	char BookDetails[50];
+	double BookPrice;
+
+	Payment *payment[SIZE2];
+  Staff *staff[SIZE5];
+
+public:
+	Booking();
+	Booking(int pBookID, const char pBookDate[], const char pBookDetails[], double pBookPrice, int pay1_pID, const char pay1_ppayType[], double pay1_ptotalAmount, const char pay1_prefNo[], int pay2_pID, const char pay2_ppayType[], double pay2_ptotalAmount, const char pay2_prefNo[], Staff *bstaff);
+  void SelectTravellingPackage (TravellingPackage *tPack);
+  void SelectHotel (Hotel *hBooking);
+  void addCustomerDetails (RegisteredCustomer *rCust);
+	double calcBookPrice(int id, const char pType[], double pAmount);
+	void checkAvailability();
+	void displayBookPrice();
+	~Booking();
+
+};
+ //Hotel.cpp
+ #include"Hotel.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Hotel::Hotel()
+{
+  
+	hotelID = 0;
+	strcpy(hotelName, "");
+	strcpy(hotelDetails, "");
+
+  noOfStaff = 0;
+  
+}
+
+Hotel::Hotel(int photelID, const char photelName[], const char photelDetails[], Staff *pstaff)
+{
+  
+	hotelID = photelID;
+	strcpy(hotelName, photelName);
+	strcpy(hotelDetails, photelDetails);
+
+  if (noOfStaff < SIZE5)
+ {
+
+staff[noOfStaff] = pstaff;
+
+noOfStaff++;
+
+  }
+  
+}
+
+void Hotel::addHotelDetails()
+{
+
+}
+
+void Hotel::deleteHotelDetails()
+{
+
+}
+
+void Hotel::updateHotelDetails()
+{
+
+}
+
+void Hotel::displayHotelDetails()
+{
+
+}
+
+Hotel::~Hotel()
+{
+
+	cout << "Destructor Called" << endl;
+
+}
+
+//Booking.cpp
+#include"Booking.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Booking::Booking()
+{
+  
+	BookID = 0;
+	strcpy(BookDate, "");
+	strcpy(BookDetails, "");
+	BookPrice = 0;
+
+  noOfStaff = 0;
+  
+}
+
+Booking::Booking(int pBookID, const char pBookDate[], const char pBookDetails[], double pBookPrice, int pay1_pID, const char pay1_ppayType[], double pay1_ptotalAmount, const char pay1_prefNo[], int pay2_pID, const char pay2_ppayType[], double pay2_ptotalAmount, const char pay2_prefNo[], Staff *bstaff)
+{
+  
+	BookID = pBookID;
+	strcpy(BookDate, pBookDate);
+	strcpy(BookDetails, pBookDetails);
+	BookPrice = pBookPrice;
+
+  payment[0]=new Payment(pay1_pID, pay1_ppayType, pay1_ptotalAmount, pay1_prefNo);
+
+  payment[1]=new Payment(pay2_pID, pay2_ppayType, pay2_ptotalAmount, pay2_prefNo);
+  
+/* if selection execution */
+    if (noOfStaff < SIZE5)
+  {
+
+      staff[noOfStaff] = bstaff;
+
+      noOfStaff++;
+
+  }// End if selection execution
+  
+}
+
+void Booking::SelectTravellingPackage (TravellingPackage *tPack)
+{
+
+  
+}
+
+void Booking::SelectHotel (Hotel *hBooking)
+{
+
+  
+}
+
+void Booking::addCustomerDetails (RegisteredCustomer *rCust)
+{
+
+  
+}
+
+double Booking::calcBookPrice(int id, const char pType[], double pAmount)
+{
+  
+
+}
+
+void Booking::checkAvailability()
+{
+
+}
+
+void Booking::displayBookPrice()
+{
+
+}
+
+Booking::~Booking()
+{
+   for (int i=0; i<SIZE2; i++)
+    {
+
+        delete payment[i];
+
+    }
+  
+}
+ 
