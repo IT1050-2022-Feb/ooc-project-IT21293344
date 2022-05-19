@@ -1,1 +1,174 @@
+/* Wickramaarachchi K. A. S. N. - IT21293344 */
+/* Individual Contribution -  TravellingPackage, Main */
+
+/* TravellingPackage.h */
+
+#pragma once
+#include"Staff.h" 
+
+#define SIZE5 2
+
+class TravellingPackage
+{
+
+private:
+	int packID;
+	char packName[20];
+	char packType[20];
+	char packDetails[50];
+
+	Staff *staff[SIZE5];
+
+public:
+	TravellingPackage();
+	TravellingPackage(int pid, const char ptype[], const char pname[], const char ppackDetails[], Staff *tstaff);
+	void addTPackDetails();
+	void deleteTPackDetails();
+	void updateTPackDetails();
+	void displayTPackDetails();
+	~TravellingPackage();
+
+};
+
+/* TravellingPackage.cpp */
+
+#include"TravellingPackage.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+TravellingPackage::TravellingPackage()
+{
+  
+  packID = 0;
+  strcpy(packName, "");
+  strcpy(packType, "");
+  strcpy(packDetails, "");
+
+  noOfStaff = 0;
+  
+}
+
+TravellingPackage::TravellingPackage(int pid, const char ptype[], const char pname[], const char ppackDetails[], Staff *tstaff)
+{
+  
+  packID = pid;
+  strcpy(packName, pname);
+  strcpy(packType, ptype);
+  strcpy(packDetails, ppackDetails);
+
+  /* if selection execution */
+  if (noOfStaff < SIZE5)
+  {
+
+    staff[noOfStaff] = tstaff;
+
+    noOfStaff++;
+
+  }// End if selection execution
+
+}
+
+void TravellingPackage::addTPackDetails()
+{
+  
+}
+
+void TravellingPackage::deleteTPackDetails()
+{
+  
+}
+
+void TravellingPackage::updateTPackDetails()
+{
+  
+}
+
+void TravellingPackage::displayTPackDetails()
+{
+  
+}
+
+TravellingPackage::~TravellingPackage()
+{
+
+  cout << "Destructor Called" << endl;
+  
+}
+
+
+/* main.cpp */
+
+#include"Booking.h"
+#include"Customer.h"
+#include"Hotel.h"
+#include"RegisteredCustomer.h"
+#include"Report.h"
+#include"Staff.h"
+#include"TravellingPackage.h"
+
+#include <iostream>
+
+using namespace std;
+
+// function main begins program execution 
+int main()
+{
+	/* ---- Object Creation ---- */
+	Customer *customer = new Customer(); // Object - Customer Class
+  
+  RegisteredCustomer *rCustomer = new RegisteredCustomer(); // Object - Registered Customer Class
+
+	Booking *booking = new Booking(); // Object  - Booking Class
+
+	Hotel *hotel = new Hotel(); // Object  - Hotels Class
+
+	TravellingPackage *tPackage = new TravellingPackage(); // Object  - TravellingPackages Class
+
+	Staff *staff = new Staff(); // Object  - Staff Class
+	
+	Report *report = new Report(); // Object - Report Class
+
+	/* ---- Method Calling ---- */
+  customer->displayDetails();
+  customer->registerUser();
+  customer->SearchTravellingPackages(booking);
+  customer->SearchHotels(hotel);
+
+  rCustomer->displayDetails();
+  rCustomer->login();
+  rCustomer->logout();
+  
+  booking->checkAvailability();
+  booking->displayBookPrice();
+  booking->SelectTravellingPackage();
+  booking->SelectHotel();
+  booking->addCustomerDetails();
+
+  hotel->addHotelDetails();
+  hotel->deleteHotelDetails();
+  hotel->updateHotelDetails();
+  hotel->displayHotelDetails();
+
+  tPackage->addTPackDetails();
+	tPackage->deleteTPackDetails();
+	tPackage->updateTPackDetails();
+	tPackage->displayTPackDetails();
+  
+	report->bookingDetailsReport();
+	report->paymentDetailsReport();
+
+	/* ---- Delete Dynamic Objects ---- */
+	delete customer;
+  delete rCustomer;
+  delete booking;
+  delete hotel;
+  delete tPackage;
+  delete staff;
+  delete report;
+  
+	return 0;
+
+}//end of function main
 
